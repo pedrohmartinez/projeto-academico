@@ -2,55 +2,10 @@
 {% load static %}
 
 {% block content %}
-<!-- PRELOADER -->
-<div id="preloader">
-    <i class="circle-preloader"></i>
-    <img alt="" src="{% static 'img/core-img/loader.png' %}">
-</div>
-<!-- BUSCA -->
-<div class="search-wrapper">
-    <div class="close-btn"><i aria-hidden="true" class="fa fa-times"></i></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form action="#">
-                    <input type="search" name="busca" placeholder="Pesquise pelos nossos cursos" >
-                    <button type="submit"><i aria-hidden="true" class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- HEADER -->
-<header class="header-area">
-    <div class="delicious-main-menu">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container">
-                <nav class="classy-navbar justify-content-between" id="deliciousNav">
-                    <a class="nav-brand" href="#">
-                        <img alt="" src="{% static 'img/core-img/iflogo.png' %}"></a>
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-                    <div class="classy-menu">
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <div class="classynav">
-                            <ul>
-                                <li><a href="{% url 'index' %}">Início</a></li>
-                                <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
-                            </ul>
-                            <div class="search-btn">
-                                <i aria-hidden="true" class="fa fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
+
+{% include 'partials/_preloader.html' %}
+{% include 'partials/_search_bar.html' %}
+{% include 'partials/_header.html' %}
 
 <!-- CONTEUDO -->
 <section class="best-acad-area">
@@ -58,5 +13,7 @@
         Conteúdo index
     </div>
 </section>
+
+{% include 'partials/_footer.html' %}
 
 {% endblock %}
