@@ -1,21 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="" name="description">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <title>LabIF</title>
-
-    <link href="{% static 'img/core-img/favicon.ico' %}" rel="icon">
-
-    <link href="{% static 'site.css' %}" rel="stylesheet">
-
-</head>
-
-<body>
+{% block content %}
 <!-- PRELOADER -->
 <div id="preloader">
     <i class="circle-preloader"></i>
@@ -52,7 +38,7 @@
                         </div>
                         <div class="classynav">
                             <ul>
-                                <li><a href="{}">Início</a></li>
+                                <li><a href="{% url 'index' %}">Início</a></li>
                                 <li><a href="{% url 'cadastro' %}">Cadastro</a></li>
                             </ul>
                             <div class="search-btn">
@@ -73,35 +59,4 @@
     </div>
 </section>
 
-<!-- RODAPE -->
-<footer class="footer-area">
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
-                <div class="footer-social-info text-right">
-                    <a href="https://instagram.com/ifgoiano"><i aria-hidden="true" class="fa fa-instagram"></i></a>
-                    <a href="https://facebook.com/ifgoiano"><i aria-hidden="true" class="fa fa-facebook"></i></a>
-                    <a href="https://twitter.com/ifgoiano"><i aria-hidden="true" class="fa fa-twitter"></i></a>
-                    </div>
-                <div class="footer-logo">
-                    <a href="https://www.ifgoiano.edu.br" target="_blank">IF Goiano</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- jQuery-2.2.4 js -->
-<script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
-<!-- Popper js -->
-<script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
-<!-- Bootstrap js -->
-<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-<!-- All Plugins js -->
-<script src="{% static 'js/plugins/plugins.js' %}"></script>
-<!-- Active js -->
-<script src="{% static 'js/active.js' %}"></script>
-
-</body>
-
-</html>
+{% endblock %}
