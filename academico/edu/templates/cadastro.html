@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content%}
-    Conteúdo cadastro
+
+{% include 'partials/_preloader.html' %}
+{% include 'partials/_search_bar.html' %}
+{% include 'partials/_header.html' %}
+
+<!-- CONTEUDO -->
+<section class="best-acad-area">
+    <div class="container">
+        Conteúdo cadastro
+    </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
 {% endblock %}
