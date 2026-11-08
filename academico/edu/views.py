@@ -4,6 +4,17 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    
+    dados_dos_institutos = {
+        'IF Goiano':'Goiás',
+        'IFSP':'São Paulo',
+        'IFMG':'Minas Gerais'
+    }
+    
+    dados = {
+        'dados_dos_institutos':dados_dos_institutos
+    }
+    
+    return render(request, 'index.html', dados)
 def cadastro(request):
     return render(request, 'cadastro.html')

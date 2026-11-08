@@ -10,7 +10,9 @@
 <!-- CONTEUDO -->
 <section class="best-acad-area">
     <div class="container">
-        Conteúdo index
+        {% for indice, valor in dados_dos_institutos.items %}
+            {{indice}} - {{valor}} <br>
+        {% endfor %}
     </div>
 </section>
 
