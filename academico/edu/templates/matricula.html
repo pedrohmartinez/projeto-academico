@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+{% include 'partials/_preloader.html' %}
+{% include 'partials/_search_bar.html' %}
+{% include 'partials/_header.html' %}
+
+<!-- CONTEUDO -->
+<section class="best-acad-area">
+    <div class="container">
+        {{ matricula.matricula }} <br>
+        {{ matricula.nome_aluno }} <br>
+        {{ matricula.curso }} <br>
+        {{ matricula.data_matricula }}
+    </div>
+    
+</section>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock %}
