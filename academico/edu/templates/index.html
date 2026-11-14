@@ -10,9 +10,27 @@
 <!-- CONTEUDO -->
 <section class="best-acad-area">
     <div class="container">
-        {% for indice, valor in dados_dos_institutos.items %}
-            {{indice}} - {{valor}} <br>
-        {% endfor %}
+        {% if matriculas %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Nome do aluno</th>
+                        <th>Curso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for matricula in matriculas %}
+                        <tr>
+                            <td>{{ matricula.matricula}}</td>
+                            <td>{{ matricula.nome_aluno}}</td>
+                            <td>{{ matricula.curso}}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        {% endif %}
     </div>
 </section>
 
