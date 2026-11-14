@@ -1,18 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Matricula
 
 # Create your views here.
 
 def index(request):
     
-    dados_dos_institutos = {
-        'IF Goiano':'Goiás',
-        'IFSP':'São Paulo',
-        'IFMG':'Minas Gerais'
-    }
+    matriculas = Matricula.objects.all()
     
     dados = {
-        'dados_dos_institutos':dados_dos_institutos
+        'matriculas' : matriculas,
     }
     
     return render(request, 'index.html', dados)
