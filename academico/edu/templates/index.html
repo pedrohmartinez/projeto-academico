@@ -17,6 +17,7 @@
                         <th>Matrícula</th>
                         <th>Nome do aluno</th>
                         <th>Curso</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                             <td>{{ matricula.matricula}}</td>
                             <td>{{ matricula.nome_aluno}}</td>
                             <td>{{ matricula.curso}}</td>
+                            <td><a href="{% url 'edu' matricula.id %}">Visualizar</a></td>
                         </tr>
                     {% endfor %}
 
