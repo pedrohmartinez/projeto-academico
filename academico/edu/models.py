@@ -12,4 +12,4 @@ class Matricula(models.Model):
     class Meta:
         verbose_name = "Matrícula do aluno"
         verbose_name_plural = "Matrículas dos alunos"
-        ordering = ["nome_aluno"]
+        ordering = ["id"]
