@@ -3,4 +3,10 @@ from .models import Matricula
 
 # Register your models here.
 
-admin.site.register(Matricula)
+class AdminMatricula(admin.ModelAdmin):
+    list_display = ( 'id', 'matricula', 'nome_aluno')
+    list_display_links = ('id', 'nome_aluno')
+    search_fields = ('nome_aluno', )
+    list_filter = ('curso', )
+    list_per_page = (2)
+admin.site.register(Matricula, AdminMatricula)
