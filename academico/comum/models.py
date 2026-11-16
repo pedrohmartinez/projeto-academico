@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,7 +11,8 @@ class Aluno(models.Model):
         ('Outro', 'Outro'),
     )
     
-    nome = models.CharField(verbose_name='Nomes', max_length=200)
+    # nome = models.CharField(verbose_name='Nomes', max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.CharField(verbose_name='E-mail', max_length=200)
     data_nascimento = models.DateField(verbose_name='Data de Nascimento', null=True)
     sexo = models.CharField(choices=sexo_opcoes, max_length=30, null=True)
@@ -19,4 +21,7 @@ class Aluno(models.Model):
     class Meta:
         verbose_name = 'Aluno'
         verbose_name_plural = 'Alunos'
-        ordering = ['id']
+        ordering = ('user__first_name', )
+        
+    def __str__(self):
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
