@@ -35,6 +35,7 @@
                 <div class="contact-form-area">
 
                     <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
 
                         <div class="row col-12 ">
 
