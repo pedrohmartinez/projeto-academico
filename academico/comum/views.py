@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 # Create your views here.
 
 def cadastro(request):
@@ -9,7 +8,11 @@ def dashboard(request):
     return render(request, 'comum/dashboard.html')
 
 def login(request):
-    return render(request, 'comum/login.html')
+    if request.method == 'POST':
+            print('REQUISIÇÃO POST')
+            return redirect('index')
+    else:
+        return render(request, 'comum/login.html')
 
 def logout(request):    
     pass
