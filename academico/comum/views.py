@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import auth
+from django.contrib.auth.models import User
 # Create your views here.
 
 def cadastro(request):
@@ -9,10 +11,29 @@ def dashboard(request):
 
 def login(request):
     if request.method == 'POST':
-            print('REQUISIÇÃO POST')
-            return redirect('index')
+            email = request.POST["email"]
+            senha = request.POST["senha"]
+            
+            if User.objects.filter(email=email).exists():
+                nome = User.objects.filter(email=email).values_list('username', flat=True).get()
+                user = auth.authenticate(request, username=nome, password=senha)
+                
+                if user is not None:
+                    auth.login(request, user)
+                    print('Login realizado com sucesso!')
+                    return redirect('dashboard')
+                else:
+                    print('Falha na autentificação')
+                    return redirect('login')
+            else:
+                print('E-mail não cadastado')
+                return redirect('login')
     else:
-        return render(request, 'comum/login.html')
+        if request.user.is_authenticated:
+            return redirect('dashboard')
+        
+        else:
+            return render(request, 'comum/login.html')
 
 def logout(request):    
     pass
