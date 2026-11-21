@@ -4,6 +4,33 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def cadastro(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        senha2 = request.POST.get('senha2')
+
+        if not nome or not email or not senha or not senha2:
+            print('Preencha todos os campos')
+            return redirect('cadastro')
+
+        if senha != senha2:
+            print('As senhas não conferem')
+            return redirect('cadastro')
+
+        if User.objects.filter(email=email).exists():
+            print('E-mail já cadastrado')
+            return redirect('cadastro')
+
+        if User.objects.filter(username=nome).exists():
+            print('Usuário já cadastrado')
+            return redirect('cadastro')
+
+        user = User.objects.create_user(username=nome, email=email, password=senha)
+        user.save()
+        print('Cadastro realizado com sucesso!')
+        return redirect('login')
+
     return render(request, 'comum/cadastro.html')
 
 def dashboard(request):
