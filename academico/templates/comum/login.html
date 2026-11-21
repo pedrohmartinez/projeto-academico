@@ -6,7 +6,7 @@
 
 {% include 'partials/_preloader.html' %}
 
-{% include 'partials/_buscar.html' %}
+{% include 'partials/_search_bar.html' %}
 
 {% include 'partials/_header.html' %}
 
@@ -34,7 +34,7 @@
 
                 <div class="contact-form-area">
 
-                    <form action="{% url 'login' %}">
+                    <form action="{% url 'login' %}" method="post">
 
                         <div class="row col-12 ">
 
