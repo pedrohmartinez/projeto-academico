@@ -5,8 +5,10 @@ from .models import Matricula
 
 class AdminMatricula(admin.ModelAdmin):
     list_display = ( 'id', 'matricula', 'aluno')
-    list_display_links = ('id', 'aluno')
-    search_fields = ('aluno__user__first_name', )
+    list_display_links = ('id', 'aluno', 'curso')
+    search_fields = ('aluno__user__username', 'matricula')
     list_filter = ('curso', )
-    list_per_page = (2)
+    list_per_page = (10)
+    
+    
 admin.site.register(Matricula, AdminMatricula)
