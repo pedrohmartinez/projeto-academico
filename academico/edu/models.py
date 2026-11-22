@@ -56,6 +56,6 @@ class Curso(models.Model):
     def __str__(self):
         codigo = self.codigo.replace('-','')
         
-        return '{} - {}'.format(codigo, self.descricao)
+        return '{} - {}'.format(self.descricao, codigo)
     
     
