@@ -24,7 +24,7 @@
                     {% for matricula in matriculas %}
                         <tr>
                             <td>{{ matricula.matricula}}</td>
-                            <td>{{ matricula.nome_aluno}}</td>
+                            <td>{{ matricula.aluno}}</td>
                             <td>{{ matricula.curso}}</td>
                             <td><a href="{% url 'edu' matricula.id %}">Visualizar</a></td>
                         </tr>
