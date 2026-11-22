@@ -15,6 +15,7 @@ class AdminCursos(admin.ModelAdmin):
     
     list_display = ('id', 'descricao', 'codigo', 'ativo')
     list_display_links = ('id', 'descricao', 'codigo')
+    list_editable = ('ativo',)
     search_fields = ('descricao', 'codigo')
     list_per_page = 10
     
