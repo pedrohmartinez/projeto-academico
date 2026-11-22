@@ -21,8 +21,8 @@ class Aluno(models.Model):
     class Meta:
         verbose_name = 'Aluno'
         verbose_name_plural = 'Alunos'
-        ordering = ('user__first_name', )
+        ordering = ('user__username', )
         
     def __str__(self):
-        return '{} {}'.format(self.user.first_name, self.user.last_name)
+        return '{}'.format(self.user.username)
     
