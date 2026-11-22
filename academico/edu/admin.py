@@ -17,6 +17,7 @@ class AdminCursos(admin.ModelAdmin):
     list_display_links = ('id', 'descricao', 'codigo')
     list_editable = ('ativo',)
     search_fields = ('descricao', 'codigo')
+    readonly_fields = ('codigo',)
     list_per_page = 10
     
 admin.site.register(Matricula, AdminMatricula)
