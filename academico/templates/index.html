@@ -29,6 +29,40 @@
                             <td><a href="{% url 'edu' matricula.id %}">Visualizar</a></td>
                         </tr>
                     {% endfor %}
+                </tbody>
+                <tbody>
+                    {% if cursos %}
+
+                    <h2>CURSOS</h2>
+
+                    <div class="row">
+
+                        <div class="col-12 col-sm-6 col-lg-4">
+
+                            <div class="single-best-acad-area mb-30">
+
+                                {% for curso in cursos %}
+
+                                <div class="acad-content-left">
+
+                                    <a href="{% url 'edu' curso.id %}">
+
+                                        <h5>{{ curso.descricao }}</h5>
+
+                                    </a>
+
+                                </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
 
                 </tbody>
             </table>
