@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models,IntegrityError
+import secrets
 from django.core.validators import MaxValueValidator, MinValueValidator
 from decimal import Decimal
 
@@ -18,6 +19,10 @@ class Matricula(models.Model):
         verbose_name_plural = "Matrículas dos alunos"
         ordering = ["id"]
         
+def gerar_codigo_curso_10_digitos():
+    # Garante sempre exatamente 10 dígitos numéricos (de 1000000000 a 9999999999)
+    return str(secrets.randbelow(9_000_000_000) + 1_000_000_000)
+    
 class Curso(models.Model):
     PERIODICIDADE_CHOICES = [
         [1, 'Anual'],
@@ -30,7 +35,7 @@ class Curso(models.Model):
         [60, '60 min']
     ]
     
-    codigo = models.CharField(verbose_name='Código do curso', help_text='Código usado para composição de turmas e matrículas', unique=True, max_length=10)
+    codigo = models.CharField(verbose_name='Código do curso', help_text='Código usado para composição de turmas e matrículas', unique=True, max_length=10, editable=False)
     
     descricao = models.CharField(verbose_name='Descrição', max_length=500, null=True, blank=True)
     
@@ -52,6 +57,26 @@ class Curso(models.Model):
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
         ordering = ('id', 'ativo',)
+        
+    def _gerar_codigo_unico(self):
+        while True:
+            novo_codigo = gerar_codigo_curso_10_digitos()
+            if not Curso.objects.filter(codigo=novo_codigo).exists():
+                return novo_codigo
+
+    def save(self, *args, **kwargs):
+        # Gera apenas na criação (quando ainda não tem pk e código vazio)
+        if self._state.adding and not self.codigo:
+            for _ in range(10):
+                self.codigo = self._gerar_codigo_unico()
+                try:
+                    return super().save(*args, **kwargs)
+                except IntegrityError:
+                    # Caso extremo de colisão simultânea entre duas requisições
+                    self.codigo = ''
+            raise IntegrityError('Não foi possível gerar um código único para o curso.')
+
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         codigo = self.codigo.replace('-','')
