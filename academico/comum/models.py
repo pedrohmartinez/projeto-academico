@@ -17,6 +17,7 @@ class Aluno(models.Model):
     data_nascimento = models.DateField(verbose_name='Data de Nascimento', null=True)
     sexo = models.CharField(choices=sexo_opcoes, max_length=30, null=True)
     telefone = models.CharField(verbose_name='Telefone', max_length=15, null=True)
+    foto_aluno = models.ImageField(upload_to='fotos/%Y/%m/%d/', blank=True)
     
     class Meta:
         verbose_name = 'Aluno'
